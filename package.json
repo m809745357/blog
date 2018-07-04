@@ -12,11 +12,25 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
-        "popper.js": "^1.12",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
+        "popper.js": "^1.12",
+        "tailwindcss": "^0.6.1",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "apollo-cache-inmemory": "^1.2.2",
+        "apollo-client": "^2.3.2",
+        "apollo-link-http": "^1.5.4",
+        "graphql": "^0.13.2",
+        "graphql-tag": "^2.9.2",
+        "laravel-mix-tailwind": "^0.1.0",
+        "nprogress": "^0.2.0",
+        "octicons": "^7.3.0",
+        "particles.js": "^2.0.0",
+        "scriptjs": "^2.5.8",
+        "stats-js": "^1.0.0-alpha1"
     }
 }
