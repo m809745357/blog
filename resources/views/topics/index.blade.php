@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
-@section('title', '话题列表')
+@section('title', isset($category) ? $category->name : 'Home')
 
 @section('content')
 
 <div class="container topics-index-page">
     <div class="row justify-content-center">
         <div class="col-lg-9 col-md-9">
+            @if (isset($category))
+                <div class="alert alert-info" role="alert">
+                    {{ $category->name }} ：{{ $category->description }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <ul class="tw-flex tw-list tw-list-reset tw-m-0">

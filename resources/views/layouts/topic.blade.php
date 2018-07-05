@@ -22,17 +22,14 @@
 </head>
 <body>
     <div id="app">
-        @include('layouts._header')
         <main class="py-4">
             @yield('content')
         </main>
-        @include('layouts._footer')
     </div>
     <script src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <script>
         $youziku.load('body', '6e22bf1b5634469c9b6ac8ddb521e8c6', 'HaTian-SuiXing');
         $youziku.draw();
     </script>
-     @yield('script')
 </body>
 </html>

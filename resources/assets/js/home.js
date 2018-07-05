@@ -16,15 +16,15 @@ const app = new Vue({
             links: [
                 {
                     name: 'Coding',
-                    url: '/coding'
+                    url: '/categories/1'
                 },
                 {
                     name: 'Photography',
-                    url: '/photography'
+                    url: '/categories/2'
                 },
                 {
                     name: 'Guitar',
-                    url: '/guitar'
+                    url: '/categories/3'
                 },
                 {
                     name: 'Resume',

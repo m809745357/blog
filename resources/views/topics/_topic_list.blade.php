@@ -22,7 +22,7 @@
 
                     <p class="tw-text-grey-dark">
 
-                        <a class="tw-text-grey-dark" href="#" title="{{ $topic->category->name }}">
+                        <a class="tw-text-grey-dark" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                             @octicon(file-directory)
                              {{ $topic->category->name }}
                         </a>
