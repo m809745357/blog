@@ -12,15 +12,15 @@
                 <div class="media-body">
 
                     <h5 class="mt-0 tw-flex tw-justify-between">
-                        <a class="tw-text-grey-darkest tw-text-base" href="{{ route('topics.show', [$topic->id]) }}" title="{{ $topic->title }}">
+                        <a class="tw-text-grey-darkest tw-text-base" href="{{ $topic->link() }}" title="{{ $topic->title }}">
                             {{ $topic->title }}
                         </a>
-                        <a class="tw-text-grey" href="{{ route('topics.show', [$topic->id]) }}" >
+                        <a class="tw-text-grey" href="{{ $topic->link() }}" >
                             <span class="badge tw-bg-grey tw-w-4 tw-h-4 rounded-circle text-white"> {{ $topic->reply_count }} </span>
                         </a>
                     </h5>
 
-                    <p class="tw-text-grey-dark">
+                    <p class="tw-text-grey-dark m-0 p-0">
 
                         <a class="tw-text-grey-dark" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                             @octicon(file-directory)

@@ -16,7 +16,8 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Me</a>
+                        <a href="{{ route('topics.index') }}">Home</a>
+                        <a href="{{ route('users.show', auth()->id()) }}">Me</a>
                     @else
                         <a href="{{ route('login') }}">登录</a>
                     @endauth

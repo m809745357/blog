@@ -24,6 +24,7 @@
     <div id="app">
         @include('layouts._header')
         <main class="py-4">
+            @include('layouts._message')
             @yield('content')
         </main>
         @include('layouts._footer')
