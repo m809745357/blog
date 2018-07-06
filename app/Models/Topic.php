@@ -50,6 +50,12 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    public function scopeWithCreatedAt($query, $created_at)
+    {
+        // 按照创建时间排序
+        return $query->where('created_at', 'like', "$created_at%");
+    }
+
     public function hasUpdatedFor()
     {
         $key = sprintf('users.%s.visits.%s', auth()->id(), $this->id);

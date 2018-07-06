@@ -15,14 +15,17 @@ class SeedCategoriesData extends Migration
             [
                 'name' => 'coding',
                 'description' => '编程',
+                'color' => 'purple'
             ],
             [
                 'name' => 'photograph',
                 'description' => '摄影',
+                'color' => 'indigo'
             ],
             [
                 'name' => 'guiter',
                 'description' => '吉他',
+                'color' => 'orange'
             ],
         ];
 

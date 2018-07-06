@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 162);
+/******/ 	return __webpack_require__(__webpack_require__.s = 341);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -287,141 +287,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  * $script.js JS loader & dependency manager
-  * https://github.com/ded/script.js
-  * (c) Dustin Diaz 2014 | License MIT
-  */
-
-(function (name, definition) {
-  if (typeof module != 'undefined' && module.exports) module.exports = definition()
-  else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
-  else this[name] = definition()
-})('$script', function () {
-  var doc = document
-    , head = doc.getElementsByTagName('head')[0]
-    , s = 'string'
-    , f = false
-    , push = 'push'
-    , readyState = 'readyState'
-    , onreadystatechange = 'onreadystatechange'
-    , list = {}
-    , ids = {}
-    , delay = {}
-    , scripts = {}
-    , scriptpath
-    , urlArgs
-
-  function every(ar, fn) {
-    for (var i = 0, j = ar.length; i < j; ++i) if (!fn(ar[i])) return f
-    return 1
-  }
-  function each(ar, fn) {
-    every(ar, function (el) {
-      return !fn(el)
-    })
-  }
-
-  function $script(paths, idOrDone, optDone) {
-    paths = paths[push] ? paths : [paths]
-    var idOrDoneIsDone = idOrDone && idOrDone.call
-      , done = idOrDoneIsDone ? idOrDone : optDone
-      , id = idOrDoneIsDone ? paths.join('') : idOrDone
-      , queue = paths.length
-    function loopFn(item) {
-      return item.call ? item() : list[item]
-    }
-    function callback() {
-      if (!--queue) {
-        list[id] = 1
-        done && done()
-        for (var dset in delay) {
-          every(dset.split('|'), loopFn) && !each(delay[dset], loopFn) && (delay[dset] = [])
-        }
-      }
-    }
-    setTimeout(function () {
-      each(paths, function loading(path, force) {
-        if (path === null) return callback()
-        
-        if (!force && !/^https?:\/\//.test(path) && scriptpath) {
-          path = (path.indexOf('.js') === -1) ? scriptpath + path + '.js' : scriptpath + path;
-        }
-        
-        if (scripts[path]) {
-          if (id) ids[id] = 1
-          return (scripts[path] == 2) ? callback() : setTimeout(function () { loading(path, true) }, 0)
-        }
-
-        scripts[path] = 1
-        if (id) ids[id] = 1
-        create(path, callback)
-      })
-    }, 0)
-    return $script
-  }
-
-  function create(path, fn) {
-    var el = doc.createElement('script'), loaded
-    el.onload = el.onerror = el[onreadystatechange] = function () {
-      if ((el[readyState] && !(/^c|loade/.test(el[readyState]))) || loaded) return;
-      el.onload = el[onreadystatechange] = null
-      loaded = 1
-      scripts[path] = 2
-      fn()
-    }
-    el.async = 1
-    el.src = urlArgs ? path + (path.indexOf('?') === -1 ? '?' : '&') + urlArgs : path;
-    head.insertBefore(el, head.lastChild)
-  }
-
-  $script.get = create
-
-  $script.order = function (scripts, id, done) {
-    (function callback(s) {
-      s = scripts.shift()
-      !scripts.length ? $script(s, id, done) : $script(s, callback)
-    }())
-  }
-
-  $script.path = function (p) {
-    scriptpath = p
-  }
-  $script.urlArgs = function (str) {
-    urlArgs = str;
-  }
-  $script.ready = function (deps, ready, req) {
-    deps = deps[push] ? deps : [deps]
-    var missing = [];
-    !each(deps, function (dep) {
-      list[dep] || missing[push](dep);
-    }) && every(deps, function (dep) {return list[dep]}) ?
-      ready() : !function (key) {
-      delay[key] = delay[key] || []
-      delay[key][push](ready)
-      req && req(missing)
-    }(deps.join('|'))
-    return $script
-  }
-
-  $script.done = function (idOrDone) {
-    $script([null], idOrDone)
-  }
-
-  return $script
-});
-
-
-/***/ }),
-
-/***/ 13:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -436,7 +302,7 @@ exports.push([module.i, "/* Make clicks pass-through */\n#nprogress {\n  pointer
 
 /***/ }),
 
-/***/ 160:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -482,7 +348,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(161);
+var	fixUrls = __webpack_require__(340);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -796,7 +662,7 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 
-/***/ 161:
+/***/ 340:
 /***/ (function(module, exports) {
 
 
@@ -892,24 +758,24 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ 162:
+/***/ 341:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(163);
+module.exports = __webpack_require__(342);
 
 
 /***/ }),
 
-/***/ 163:
+/***/ 342:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*jshint esversion: 6 */
-__webpack_require__(164);
+__webpack_require__(343);
 
-__webpack_require__(165);
+__webpack_require__(344);
 window.NProgress = __webpack_require__(6);
 
-window.$script = __webpack_require__(11);
+window.$script = __webpack_require__(345);
 
 window.Vue = __webpack_require__(8);
 
@@ -942,7 +808,7 @@ var app = new Vue({
     mounted: function mounted() {
         var that = this;
 
-        particlesJS("particles-js", __webpack_require__(166));
+        particlesJS("particles-js", __webpack_require__(346));
 
         $script("//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js", function () {
             // $youziku.load("body", "28a6ef19107044efbfd1971c6bb8c919", "jdlibianjian");
@@ -956,7 +822,7 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 164:
+/***/ 343:
 /***/ (function(module, exports) {
 
 /* -----------------------------------------------
@@ -2503,13 +2369,13 @@ window.particlesJS.load = function(tag_id, path_config_json, callback){
 
 /***/ }),
 
-/***/ 165:
+/***/ 344:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(13);
+var content = __webpack_require__(12);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2517,7 +2383,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(160)(content, options);
+var update = __webpack_require__(339)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2535,7 +2401,141 @@ if(false) {
 
 /***/ }),
 
-/***/ 166:
+/***/ 345:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  * $script.js JS loader & dependency manager
+  * https://github.com/ded/script.js
+  * (c) Dustin Diaz 2014 | License MIT
+  */
+
+(function (name, definition) {
+  if (typeof module != 'undefined' && module.exports) module.exports = definition()
+  else if (true) !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+  else this[name] = definition()
+})('$script', function () {
+  var doc = document
+    , head = doc.getElementsByTagName('head')[0]
+    , s = 'string'
+    , f = false
+    , push = 'push'
+    , readyState = 'readyState'
+    , onreadystatechange = 'onreadystatechange'
+    , list = {}
+    , ids = {}
+    , delay = {}
+    , scripts = {}
+    , scriptpath
+    , urlArgs
+
+  function every(ar, fn) {
+    for (var i = 0, j = ar.length; i < j; ++i) if (!fn(ar[i])) return f
+    return 1
+  }
+  function each(ar, fn) {
+    every(ar, function (el) {
+      return !fn(el)
+    })
+  }
+
+  function $script(paths, idOrDone, optDone) {
+    paths = paths[push] ? paths : [paths]
+    var idOrDoneIsDone = idOrDone && idOrDone.call
+      , done = idOrDoneIsDone ? idOrDone : optDone
+      , id = idOrDoneIsDone ? paths.join('') : idOrDone
+      , queue = paths.length
+    function loopFn(item) {
+      return item.call ? item() : list[item]
+    }
+    function callback() {
+      if (!--queue) {
+        list[id] = 1
+        done && done()
+        for (var dset in delay) {
+          every(dset.split('|'), loopFn) && !each(delay[dset], loopFn) && (delay[dset] = [])
+        }
+      }
+    }
+    setTimeout(function () {
+      each(paths, function loading(path, force) {
+        if (path === null) return callback()
+        
+        if (!force && !/^https?:\/\//.test(path) && scriptpath) {
+          path = (path.indexOf('.js') === -1) ? scriptpath + path + '.js' : scriptpath + path;
+        }
+        
+        if (scripts[path]) {
+          if (id) ids[id] = 1
+          return (scripts[path] == 2) ? callback() : setTimeout(function () { loading(path, true) }, 0)
+        }
+
+        scripts[path] = 1
+        if (id) ids[id] = 1
+        create(path, callback)
+      })
+    }, 0)
+    return $script
+  }
+
+  function create(path, fn) {
+    var el = doc.createElement('script'), loaded
+    el.onload = el.onerror = el[onreadystatechange] = function () {
+      if ((el[readyState] && !(/^c|loade/.test(el[readyState]))) || loaded) return;
+      el.onload = el[onreadystatechange] = null
+      loaded = 1
+      scripts[path] = 2
+      fn()
+    }
+    el.async = 1
+    el.src = urlArgs ? path + (path.indexOf('?') === -1 ? '?' : '&') + urlArgs : path;
+    head.insertBefore(el, head.lastChild)
+  }
+
+  $script.get = create
+
+  $script.order = function (scripts, id, done) {
+    (function callback(s) {
+      s = scripts.shift()
+      !scripts.length ? $script(s, id, done) : $script(s, callback)
+    }())
+  }
+
+  $script.path = function (p) {
+    scriptpath = p
+  }
+  $script.urlArgs = function (str) {
+    urlArgs = str;
+  }
+  $script.ready = function (deps, ready, req) {
+    deps = deps[push] ? deps : [deps]
+    var missing = [];
+    !each(deps, function (dep) {
+      list[dep] || missing[push](dep);
+    }) && every(deps, function (dep) {return list[dep]}) ?
+      ready() : !function (key) {
+      delay[key] = delay[key] || []
+      delay[key][push](ready)
+      req && req(missing)
+    }(deps.join('|'))
+    return $script
+  }
+
+  $script.done = function (idOrDone) {
+    $script([null], idOrDone)
+  }
+
+  return $script
+});
+
+
+/***/ }),
+
+/***/ 346:
 /***/ (function(module, exports) {
 
 module.exports = {"particles":{"number":{"value":400,"density":{"enable":true,"value_area":800}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":true,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":10,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":false,"distance":500,"color":"#ffffff","opacity":0.4,"width":2},"move":{"enable":true,"speed":6,"direction":"bottom","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"bubble"},"onclick":{"enable":true,"mode":"repulse"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":0.5}},"bubble":{"distance":400,"size":4,"duration":0.3,"opacity":1,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true}

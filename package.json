@@ -15,7 +15,7 @@
     "cross-env": "^5.1",
     "jquery": "^3.2",
     "laravel-mix": "^2.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.10",
     "popper.js": "^1.12",
     "tailwindcss": "^0.6.1",
     "vue": "^2.5.7"
@@ -29,6 +29,7 @@
     "graphql-tag": "^2.9.2",
     "laravel-mix-tailwind": "^0.1.0",
     "markdown-it": "^8.4.1",
+    "moment": "^2.22.2",
     "nprogress": "^0.2.0",
     "octicons": "^7.3.0",
     "particles.js": "^2.0.0",
@@ -36,6 +37,7 @@
     "simplemde": "^1.11.2",
     "tui-editor": "^1.2.4",
     "typography": "^0.16.17",
-    "typography-theme-fairy-gates": "^0.15.11"
+    "typography-theme-fairy-gates": "^0.15.11",
+    "vuejs-datepicker": "^1.5.2"
   }
 }

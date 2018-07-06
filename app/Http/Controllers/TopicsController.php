@@ -19,13 +19,17 @@ class TopicsController extends Controller
 
     public function index(Request $request, Topic $topic)
     {
-        $topics = $topic->withOrder($request->order)->paginate(20);
+        $topics = $topic->withOrder($request->order)->withCreatedAt($request->created_at)->paginate(20);
 
         $trending = collect(Redis::zrevrange('trending_topics', 0, 4))->map(function ($topic) {
             return json_decode($topic);
         });
 
-        return view('topics.index', compact('topics', 'trending'));
+        $releasesDates = Topic::all()->groupBy(function ($topic) {
+            return $topic->created_at->format('Y-m-d');
+        })->keys();
+
+        return view('topics.index', compact('topics', 'trending', 'releasesDates'));
     }
 
     public function show(Request $request, Topic $topic)
