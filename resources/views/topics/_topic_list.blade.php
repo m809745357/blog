@@ -12,9 +12,12 @@
                 <div class="media-body">
 
                     <h5 class="mt-0 tw-flex tw-justify-between">
-                        <a class="tw-text-grey-darkest tw-text-base" href="{{ $topic->link() }}" title="{{ $topic->title }}">
-                            {{ $topic->title }}
-                        </a>
+                       
+                        @if($topic->hasUpdatedFor())
+                            <a class="tw-text-grey-darkest tw-font-bold tw-text-base" href="{{ $topic->link() }}" title="{{ $topic->title }}">{{ $topic->title }}</a>
+                        @else
+                            <a class="tw-text-grey tw-font-normal tw-text-base" href="{{ $topic->link() }}" title="{{ $topic->title }}">{{ $topic->title }}</a>
+                        @endif
                         <a class="tw-text-grey" href="{{ $topic->link() }}" >
                             <span class="badge tw-bg-grey tw-w-4 tw-h-4 rounded-circle text-white"> {{ $topic->reply_count }} </span>
                         </a>

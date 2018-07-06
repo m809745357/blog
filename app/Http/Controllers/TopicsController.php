@@ -6,6 +6,9 @@ use App\Models\Topic;
 use App\Http\Requests\TopicRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class TopicsController extends Controller
 {
@@ -18,7 +21,11 @@ class TopicsController extends Controller
     {
         $topics = $topic->withOrder($request->order)->paginate(20);
 
-        return view('topics.index', compact('topics'));
+        $trending = collect(Redis::zrevrange('trending_topics', 0, 4))->map(function ($topic) {
+            return json_decode($topic);
+        });
+
+        return view('topics.index', compact('topics', 'trending'));
     }
 
     public function show(Request $request, Topic $topic)
@@ -27,6 +34,15 @@ class TopicsController extends Controller
         if (!empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
+
+        $key = sprintf('users.%s.visits.%s', auth()->id(), $topic->id);
+
+        cache()->forever($key, Carbon::now());
+
+        Redis::zincrby('trending_topics', 1, json_encode([
+            'title' => $topic->title,
+            'link' => $topic->link()
+        ]));
 
         return view('topics.show', compact('topic'));
     }

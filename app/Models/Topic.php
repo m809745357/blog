@@ -49,4 +49,11 @@ class Topic extends Model
         // 按照创建时间排序
         return $query->orderBy('created_at', 'desc');
     }
+
+    public function hasUpdatedFor()
+    {
+        $key = sprintf('users.%s.visits.%s', auth()->id(), $this->id);
+
+        return $this->updated_at > cache($key);
+    }
 }
