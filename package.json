@@ -27,6 +27,8 @@
     "back2top": "^1.0.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "highlight.js": "^9.12.0",
+    "hover.css": "^2.3.2",
     "laravel-mix-tailwind": "^0.1.0",
     "markdown-it": "^8.4.1",
     "moment": "^2.22.2",
@@ -35,7 +37,6 @@
     "particles.js": "^2.0.0",
     "scriptjs": "^2.5.8",
     "simplemde": "^1.11.2",
-    "tui-editor": "^1.2.4",
     "typography": "^0.16.17",
     "typography-theme-fairy-gates": "^0.15.11",
     "vuejs-datepicker": "^1.5.2"

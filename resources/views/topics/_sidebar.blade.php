@@ -1,4 +1,6 @@
-<Datepicker 
+<h5 class="tw-text-grey-darkest tw-mt-2">历史记录</h5>
+<hr>
+<Datepicker class="tw-flex"
     :highlighted="state.highlighted" 
     @selected="doSomethingInParentComponentFunction" 
     :format="customFormatter" 
@@ -7,10 +9,22 @@
     :language="state.language"
 >
 </Datepicker>
+@if (count($trending))
+    <h5 class="tw-text-grey-darkest tw-mt-2">热门文章</h5>
+    <hr>
+    @foreach($trending as $topic)
+        <p class="tw-p-0 tw-truncate tw-w-full">
+            <a class="tw-text-grey-darkest hvr-forward" href="{{ url($topic->link) }}">{{ $topic->title }}</a>
+        </p>
+    @endforeach
+@endif
 
-<h5 class="tw-text-grey-darkest tw-py-2">热门</h5>
-@foreach($trending as $topic)
-    <p class="tw-p-0 tw-truncate tw-w-full">
-        <a class="tw-text-grey-darkest" href="{{ url($topic->link) }}">{{ $topic->title }}</a>
-    </p>
-@endforeach
+@if (count($links))
+    <h5 class="tw-text-grey-darkest tw-mt-2">资源推荐</h5>
+    <hr>
+    @foreach ($links as $link)
+        <p class="tw-p-0 tw-truncate tw-w-full">
+            <a class="tw-text-grey-darkest hvr-forward" href="{{ $link->link }}">{{ $link->title }}</a>
+        </p>
+    @endforeach
+@endif

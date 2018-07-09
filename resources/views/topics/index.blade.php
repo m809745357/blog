@@ -13,11 +13,11 @@
                 </div>
             @endif
             <ul class="tw-flex tw-list tw-list-reset tw-m-0 tw-pb-4">
-                <li role="presentation">
-                    <a class="tw-relative tw-block tw-text-sm px-2 tw-text-grey-darkest {{ active_class( ! if_query('order', 'recent') ) }}" href="{{ Request::url() }}?order=default">最后回复</a>
+                <li role="presentation" class="tw-mr-2">
+                    <a class="hvr-shutter-in-vertical tw-relative tw-block tw-text-sm px-2 tw-text-grey-darkest {{ active_class( ! if_query('order', 'recent') ) }}" href="{{ Request::url() }}?order=default">最后回复</a>
                 </li>
                 <li role="presentation">
-                    <a class="tw-relative tw-block tw-text-sm px-2 tw-text-grey-darkest {{ active_class(if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=recent">最新发布</a>
+                    <a class="hvr-shutter-in-vertical tw-relative tw-block tw-text-sm px-2 tw-text-grey-darkest {{ active_class(if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=recent">最新发布</a>
                 </li>
             </ul>
             @include('topics._topic_list', ['topics' => $topics])
@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-lg-3 col-md-3 sidebar">
-            @include('topics._sidebar', ['trending' => $trending])
+            @include('topics._sidebar')
         </div>
     </div>
 </div>

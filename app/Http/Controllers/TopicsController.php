@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
+use App\Models\Link;
+use App\Handlers\ImageUploadHandler;
 
 class TopicsController extends Controller
 {
@@ -17,7 +19,7 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function index(Request $request, Topic $topic)
+    public function index(Request $request, Topic $topic, Link $link)
     {
         $topics = $topic->withOrder($request->order)->withCreatedAt($request->created_at)->paginate(20);
 
@@ -29,7 +31,9 @@ class TopicsController extends Controller
             return $topic->created_at->format('Y-m-d');
         })->keys();
 
-        return view('topics.index', compact('topics', 'trending', 'releasesDates'));
+        $links = $link->getAllCached();
+
+        return view('topics.index', compact('topics', 'trending', 'releasesDates', 'links'));
     }
 
     public function show(Request $request, Topic $topic)
@@ -88,5 +92,27 @@ class TopicsController extends Controller
         $topic->delete();
 
         return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+    }
+
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        // 初始化返回数据，默认是失败的
+        $data = [
+            'success' => false,
+            'msg' => '上传失败!',
+            'file_path' => ''
+        ];
+        // 判断是否有上传文件，并赋值给 $file
+        if ($file = $request->upload_file) {
+            // 保存图片到本地
+            $result = $uploader->save($request->upload_file, 'topics', \Auth::id(), 1024);
+            // 图片保存成功的话
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg'] = '上传成功!';
+                $data['success'] = true;
+            }
+        }
+        return $data;
     }
 }
