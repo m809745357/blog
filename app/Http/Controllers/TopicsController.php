@@ -19,24 +19,20 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function index(Request $request, Topic $topic, Link $link)
+    public function index(Request $request, Category $category)
     {
-        $topics = $topic->withOrder($request->order)->withCreatedAt($request->created_at)->paginate(20);
+        $topics = Topic::withOrder($request->order)->withCreatedAt($request->created_at);
 
-        $trending = collect(Redis::zrevrange('trending_topics', 0, 4))->map(function ($topic) {
-            return json_decode($topic);
-        });
+        if ($category->exists) {
+            $topics->where('category_id', $category->id);
+        }
 
-        $releasesDates = Topic::all()->groupBy(function ($topic) {
-            return $topic->created_at->format('Y-m-d');
-        })->keys();
+        $topics = $topics->paginate(20);
 
-        $links = $link->getAllCached();
-
-        return view('topics.index', compact('topics', 'trending', 'releasesDates', 'links'));
+        return view('topics.index', compact('topics'));
     }
 
-    public function show(Request $request, Topic $topic)
+    public function show(Request $request, Category $category, Topic $topic)
     {
         // URL 矫正
         if (!empty($topic->slug) && $topic->slug != $request->slug) {
@@ -57,8 +53,7 @@ class TopicsController extends Controller
 
     public function create(Topic $topic)
     {
-        $categories = Category::all();
-        return view('topics.create_and_edit', compact('topic', 'categories'));
+        return view('topics.create_and_edit', compact('topic'));
     }
 
     public function store(TopicRequest $request, Topic $topic)
@@ -73,9 +68,8 @@ class TopicsController extends Controller
     public function edit(Topic $topic)
     {
         $this->authorize('update', $topic);
-        $categories = Category::all();
 
-        return view('topics.create_and_edit', compact('topic', 'categories'));
+        return view('topics.create_and_edit', compact('topic'));
     }
 
     public function update(TopicRequest $request, Topic $topic)

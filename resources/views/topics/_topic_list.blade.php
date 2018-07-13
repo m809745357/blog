@@ -19,7 +19,7 @@
                         <span title="最后活跃于" class="tw-ml-2">{{ $topic->updated_at->diffForHumans() }}</span>
                     </a>
                 </h5>
-                <p>{{ $topic->excerpt }} {{ $topic->excerpt }} {{ $topic->excerpt }} {{ $topic->excerpt }}</p>
+                <p>{{ $topic->excerpt }}</p>
                 <p class="tw-text-grey-dark m-0 p-0">
                     <a class="tw-text-grey-dark tw-text-base tw-mr-1" href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">
                         @octicon(person)

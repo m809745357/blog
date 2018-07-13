@@ -18,7 +18,7 @@ class Topic extends Model
 
     public function link($params = [])
     {
-        return route('topics.show', array_merge([$this->id, $this->slug], $params));
+        return route('topics.show', array_merge([$this->category->name, $this->id, $this->slug], $params));
     }
 
     public function scopeWithOrder($query, $order)
@@ -50,10 +50,13 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
-    public function scopeWithCreatedAt($query, $created_at)
+    public function scopeWithCreatedAt($query)
     {
         // 按照创建时间排序
-        return $query->where('created_at', 'like', "$created_at%");
+        if (request()->has('created_at')) {
+            return $query->where('created_at', 'like', request()->created_at . '%');
+        }
+        return $query;
     }
 
     public function hasUpdatedFor()

@@ -14,14 +14,19 @@
                 <li class="nav-item">
                     <a class="nav-link {{ active_class(if_route('topics.index')) }}" href="{{ route('topics.index') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}" href="{{ route('categories.show', 1) }}">Coding</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}" href="{{ route('categories.show', 2) }}">Photograph</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}" href="{{ route('categories.show', 3) }}">guiter</a>
+
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link {{ active_class(if_route('categories.show')) }} dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        Category
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        @foreach($categories as $category)
+                            <a class="dropdown-item" href="{{ route('categories.show', $category->name) }}">
+                                {{ $category->name }}
+                            </a>
+                        @endforeach
+                    </div>
                 </li>
             </ul>
 
