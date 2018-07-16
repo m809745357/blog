@@ -28,7 +28,7 @@
 
                     <span> • </span>
 
-                    <a class="tw-text-{{$topic->category->color}}-dark" href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
+                    <a class="tw-text-{{$topic->category->color}}-dark" href="{{ route('categories.show', $topic->category->name) }}" title="{{ $topic->category->name }}">
                         @octicon(file-directory)
                             {{ $topic->category->name }}
                     </a>
