@@ -18,12 +18,12 @@ class SeedCategoriesData extends Migration
                 'color' => 'purple'
             ],
             [
-                'name' => 'photograph',
+                'name' => 'photography',
                 'description' => '摄影',
                 'color' => 'indigo'
             ],
             [
-                'name' => 'guiter',
+                'name' => 'guitar',
                 'description' => '吉他',
                 'color' => 'orange'
             ],
