@@ -27,10 +27,19 @@ host('121.42.34.238')
     ->identityFile('~/.ssh/deployerkey')
     ->set('deploy_path', '/data/www/{{application}}');
 
+task('php-fpm:restart', function () {
+    run('service php7.2-fpm restart');
+});
+
 // Tasks
+task('build', function () {
+    run('cd {{release_path}} && build');
+});
+
+after('deploy:symlink', 'php-fpm:restart');
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
 // Migrate database before symlink new release.
-
 before('deploy:symlink', 'artisan:migrate');
