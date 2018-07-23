@@ -23,7 +23,9 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         @foreach($categories as $category)
                             <a class="dropdown-item" href="{{ route('categories.show', $category->name) }}">
-                                {{ $category->name }}
+                                <div class="tw-flex tw-justify-between tw-items-center tw-text-{{$category->color}}">
+                                {{ $category->name }} <span class="tw-flex tw-min-w-0 tw-justify-center tw-items-center tw-text-white tw-rounded tw-px-1 tw-bg-{{$category->color}}">{{ $category->post_count }}</span>
+                                </div>
                             </a>
                         @endforeach
                     </div>

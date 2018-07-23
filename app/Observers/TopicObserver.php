@@ -29,7 +29,7 @@ class TopicObserver
 
     public function creating(Topic $topic)
     {
-        //
+        $topic->category->increment('post_count', 1);
     }
 
     public function updating(Topic $topic)
