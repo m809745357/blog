@@ -29,10 +29,7 @@
         </main>
         @include('layouts._footer')
     </div>
-    <script src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <script>
-        $youziku.load('body', '6e22bf1b5634469c9b6ac8ddb521e8c6', 'HaTian-SuiXing');
-        $youziku.draw();
         let created_at = new Date();
     </script>
      @yield('script')

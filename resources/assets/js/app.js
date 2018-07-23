@@ -9,7 +9,6 @@ import Datepicker from 'vuejs-datepicker';
 import { zh } from 'vuejs-datepicker/dist/locale';
 import moment from 'moment';
 import array from 'lodash/array';
-import 'hover.css';
 
 NProgress.start();
 

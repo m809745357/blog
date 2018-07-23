@@ -45,12 +45,12 @@ const app = new Vue({
 
         particlesJS("particles-js", require('./particlesjs-config.json'));
         
-        $script("//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js", function () {
-            // $youziku.load("body", "28a6ef19107044efbfd1971c6bb8c919", "jdlibianjian");
-            $youziku.load("body", "6e22bf1b5634469c9b6ac8ddb521e8c6", "HaTian-SuiXing");
-            $youziku.draw();
+        // $script("//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js", function () {
+        //     // $youziku.load("body", "28a6ef19107044efbfd1971c6bb8c919", "jdlibianjian");
+        //     $youziku.load("body", "6e22bf1b5634469c9b6ac8ddb521e8c6", "HaTian-SuiXing");
+        //     $youziku.draw();
             NProgress.done();
             that.loading = true;
-        });
+        // });
     }
 });
