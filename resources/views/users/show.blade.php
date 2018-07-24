@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container tw-bg-white tw-shadow">
     <div class="row justify-content-center">
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
             <div class="card">

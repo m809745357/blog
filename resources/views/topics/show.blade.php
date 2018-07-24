@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container tw-bg-white tw-shadow">
     <markdown-it :body="{{ $topic }}"></markdown-it>
 </div>
 

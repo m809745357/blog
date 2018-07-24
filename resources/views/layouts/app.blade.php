@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         @include('layouts._header')
-        <main class="py-4">
+        <main class="py-4 tw-bg-grey-lighter">
             @include('layouts._message')
             @yield('content')
         </main>

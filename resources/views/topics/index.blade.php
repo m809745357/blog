@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container tw-bg-white tw-shadow">
     <div class="row justify-content-center">
         <div class="col-lg-9 col-md-9">
             @if (isset($category))
@@ -12,7 +12,7 @@
                     {{ $category->name }} ：{{ $category->description }}
                 </div>
             @endif
-            <ul class="tw-flex tw-list tw-list-reset tw-m-0 tw-pb-4">
+            <ul class="tw-flex tw-list tw-list-reset tw-m-0 tw-pb-4 tw-mt-2 ">
                 <li role="presentation" class="tw-mr-2">
                     <a class="hvr-shutter-in-vertical tw-relative tw-block tw-text-sm px-2 tw-text-grey-darkest {{ active_class( ! if_query('order', 'recent') ) }}" href="{{ Request::url() }}?order=default">最后回复</a>
                 </li>
